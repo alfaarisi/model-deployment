@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Webpage</title> 
+    <style>
+       body {
+          text-align: center;
+        }
+        button {
+            background-color: blue;
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>News Topic Classifier</h1>
+    <h2><em>Not 100% accurate!</em></h2>
+    <div>
+       <form method="post" action="/predict">
+            <textarea rows="12" cols="60" name="content" placeholder="Enter Your News" 
+              autocomplete="off">{{ news }}</textarea>
+            <div>
+                <button type ="Submit"> 
+                    Button
+                </button>
+                <a href="/">Reset</a>
+            </div>
+        </form>
+
+    <h2>{{ predictions }}</h2>
+</body>
+</html>
