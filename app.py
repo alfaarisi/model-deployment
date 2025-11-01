@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import joblib
 from joblib import dump, load
 
@@ -22,6 +22,14 @@ def predict():
 
     return render_template("index.html", predictions = predictions, news=news )
 
+@app.route("/api/predict", methods=["POST"])
+def predict_api():
+    data = request.get_json(force=True) # get data posted as a json
+    news = data["content"]
+    tokenized_news = cv.transform([news]) # X
+    predictions = topic_clas.predict(tokenized_news)
+    predictions = predictions[0]
+    return jsonify({'predictions': predictions, 'news': news})
 
 
 if __name__ == "__main__":
